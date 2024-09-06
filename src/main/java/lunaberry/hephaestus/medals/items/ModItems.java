@@ -13,19 +13,24 @@ import net.minecraft.util.Identifier;
 public class ModItems {
     /*  Items to be Registered */
     public static final Item DILDO = registerItem("dildo", new Item(new FabricItemSettings()));
+    public static final Item ROE = registerItem("roe", new Item(new FabricItemSettings()));
+    public static final Item POTIONBAG = registerItem("potionbag", new Item(new FabricItemSettings()));
 
     /* Register Items */
     private static Item registerItem(String name, Item item){
 
-        return Registry.register(Registries.ITEM, new Identifier(HephaestusMetals.MOD_ID), item);
+        return Registry.register(Registries.ITEM, new Identifier(HephaestusMetals.MOD_ID, name ), item);
     }
 
     public static void registerModItems(){
         HephaestusMetals.LOGGER.info("Registering Items for" + HephaestusMetals.MOD_ID);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(ModItems::addItemsToIngredientTabItemGroup);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ModItems::addItemsToIngredientTabItemGroup);
+
     }
         /* Add Items to Groups */
     private static void addItemsToIngredientTabItemGroup(FabricItemGroupEntries fabricItemGroupEntries) {
         fabricItemGroupEntries.add(DILDO);
+        fabricItemGroupEntries.add(ROE);
+        fabricItemGroupEntries.add(POTIONBAG);
     }
 }
